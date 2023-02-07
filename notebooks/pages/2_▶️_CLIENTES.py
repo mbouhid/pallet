@@ -32,19 +32,14 @@ st.sidebar.markdown( """_______""" )
 # FILTRO
 st.sidebar.markdown( '## Average Price for Two' )
 
-dollar_slider_min, dollar_slider_max = st.sidebar.slider( 
-    'Select price limit:',
-    value=[0.0, 755.0],
-    min_value=0.0,
-    max_value=755.0)
 
 st.sidebar.markdown( """---""" )
 
 st.sidebar.markdown( '## Countries' )
 
-country = st.sidebar.multiselect( 
+country = st.sidebar.multiselect(
     'Select the country:',
-    list(df['country'].unique()), 
+    list(df['country'].unique()),
     default=list(df['country'].unique()) )
 
 st.sidebar.markdown( """---""" )
@@ -76,30 +71,27 @@ with col2:
 
 with col3:
     st.metric('Online Service', df['has_online_delivery'].sum(), help="Restaurants that acept online requests")
-       
+
 with col4:
     meancity = df[['country', 'city']].groupby('country').nunique().reset_index()
     st.metric('Average Cities', meancity['city'].mean().round(2), help='Average Cities by Country')
 
-st.markdown("__________")    
-    
+st.markdown("__________")
+
 with st.container():
     st.subheader('Votes distribution by country - Top 5')
     df_aux = df[['country', 'votes']].groupby('country').sum().reset_index().sort_values('votes', ascending=False).head(5)
     top5country = df_aux['country'].unique()
     df5country = df.loc[df['country'].isin (top5country)]
     df5country['votes'] = df5country['votes']+1
-    df5country = df5country.loc[(df['votes'] < 2500), :] 
+    df5country = df5country.loc[(df['votes'] < 2500), :]
     fig = px.box( y='votes', x='country', data_frame=df5country, color='country', color_discrete_sequence=px.colors.qualitative.Pastel)
     st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("__________")    
+st.markdown("__________")
 
 with st.container():
     st.subheader('Mean price by country')
     df_aux = df[['restaurant_name', 'country', 'dollar']].groupby('country').mean().reset_index()
     fig = px.line(df_aux, x='country', y='dollar')
     st.plotly_chart( fig, use_container_width=True)
-    
-
-    
