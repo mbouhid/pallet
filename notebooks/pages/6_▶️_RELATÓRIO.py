@@ -20,12 +20,16 @@ conn.close()
 
 st.sidebar.markdown( '## Produtos' )
 
-country = st.sidebar.multiselect(
+produtos = st.sidebar.multiselect(
     'Selecione os produtos:',
     list(df['produto'].unique()),
     default=list(df['produto'].unique()) )
+linhas_selecionadas = df['produto'].isin(produtos)
+df = df.loc[linhas_selecionadas, :]
 
 st.sidebar.write("---")
+
+### FILTRO POR QUANTIDADE DE PALLETS ###
 
 qtde_slider_min, qtde_slider_max = st.sidebar.slider(
     'Selecione a quantidade desejada:',
@@ -36,5 +40,10 @@ qtde_slider_min, qtde_slider_max = st.sidebar.slider(
 linhas_selecionadas_max = df['qtd'] <=  qtde_slider_max
 linhas_selecionadas_min = df['qtd'] >=  qtde_slider_min
 df = df.loc[linhas_selecionadas_max & linhas_selecionadas_min, :]
+
+### FILTRO POR CLIENTE ###
+clientes = st.sidebar.multiselect("Selecione os clientes:", options=list(df["nome_cliente"].unique()), default=list(df["nome_cliente"].unique()))
+linhas_selecionadas = df['nome_cliente'].isin(clientes)
+df = df.loc[linhas_selecionadas, :]
 
 st.write(df)
