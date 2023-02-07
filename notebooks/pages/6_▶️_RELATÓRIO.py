@@ -22,8 +22,8 @@ st.sidebar.markdown( '## Produtos' )
 
 country = st.sidebar.multiselect(
     'Selecione os produtos:',
-    list(df['nome_produto'].unique()),
-    default=list(df['nome_produto'].unique()) )
+    list(df['produto'].unique()),
+    default=list(df['produto'].unique()) )
 
 st.sidebar.write("---")
 

@@ -16,6 +16,7 @@ st.title('Pedidos')
 models = ['pallet100', 'pallet120']
 sub_pallet120 = ['1200x90x15', '1000x90x18', '90x90x90', 'extra1200x90x15']
 months = list(calendar.month_name[1:])
+lista_produtos = ["Pallet120", "Pallet100"]
 
 
 
@@ -48,14 +49,14 @@ def form():
         with col2:
             clear = st.form_submit_button(label='Limpar')
         if submission == True:
-            addData(name, qtd, qtd1200, qtd1000, qtd90, qtd1200ex) # <--
+            addData(name, "Pallet120", qtd, qtd1200, qtd1000, qtd90, qtd1200ex) # <--
             st.success('Guardado com sucesso!')
         if clear == True:
             st.success('Limpeza feita!')
 
-def addData(a, b, c, d, e, f): # <--
-    cur.execute("""CREATE TABLE IF NOT EXISTS request(nome_produto TEXT(50), qtd INTEGER(5), peça1200 INTEGER(6), peça1000 INTEGER(6), peça90 INTEGER(6), extra1200 INTEGER(6));""") # <--
-    cur.execute("INSERT INTO request VALUES (?,?,?,?,?,?)", (a, b, c, d, e, f)) # <--
+def addData(a, b, c, d, e, f, g): # <--
+    cur.execute("""CREATE TABLE IF NOT EXISTS request(nome_cliente TEXT(50), produto TEXT(20), qtd INTEGER(5), peça1200 INTEGER(6), peça1000 INTEGER(6), peça90 INTEGER(6), extra1200 INTEGER(6));""") # <--
+    cur.execute("INSERT INTO request VALUES (?,?,?,?,?,?,?)", (a, b, c, d, e, f, g)) # <--
     conn.commit()
     # st.success('Successfully submitted') # <--
 
@@ -64,11 +65,11 @@ form()
 
 
 # Verificação da tabela criada
-query = """
-    select * from request
+# query = """
+#     select * from request
 
-"""
-df = pd.read_sql_query(query, conn)
+# """
+# df = pd.read_sql_query(query, conn)
 #st.write(df)
 
 ## Filters
@@ -89,4 +90,4 @@ df = pd.read_sql_query(query, conn)
 #texto = 'A soma do test2 é : '
 #st.write(texto, df_filtered['qtd'].sum())
 
-conn.close()
+# conn.close()
