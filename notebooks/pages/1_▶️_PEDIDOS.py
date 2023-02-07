@@ -38,6 +38,7 @@ def form():
                     st.write(f'{prod}:', qtd*9)
                 elif prod == 'extra1200x90x15':
                     st.write(f'{prod}:', qtd*3)
+
         col1, col2 = st.columns(2)
         with col1:
             submission = st.form_submit_button(label='Salvar')
