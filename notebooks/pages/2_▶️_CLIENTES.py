@@ -1,17 +1,11 @@
 # Libraries
-import folium
 import pandas as pd
 from PIL import Image
 import streamlit as st
-import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-from streamlit_folium import folium_static
-from folium.plugins import MarkerCluster
-import matplotlib.pyplot as plt
 
 
-st.set_page_config( page_title='Local', page_icon='🌎', layout='wide')
+
+st.set_page_config( page_title='Clientes', layout='wide')
 
 # Import dataset
 df_raw = pd.read_csv( 'data/dfpronto.csv' )
@@ -24,7 +18,7 @@ df = df_raw.copy()
 #=======================================================
 
 
-logo = Image.open( 'logo.png' )
+logo = Image.open( './img/pallet.webp')
 st.sidebar.image( logo)
 
 st.sidebar.markdown( """_______""" )
@@ -82,24 +76,3 @@ with col4:
     st.metric('Average Cities', meancity['city'].mean().round(2), help='Average Cities by Country')
 
 st.markdown("__________")    
-    
-with st.container():
-    st.subheader('Votes distribution by country - Top 5')
-    df_aux = df[['country', 'votes']].groupby('country').sum().reset_index().sort_values('votes', ascending=False).head(5)
-    top5country = df_aux['country'].unique()
-    df5country = df.loc[df['country'].isin (top5country)]
-    df5country['votes'] = df5country['votes']+1
-    df5country = df5country.loc[(df['votes'] < 2500), :] 
-    fig = px.box( y='votes', x='country', data_frame=df5country, color='country', color_discrete_sequence=px.colors.qualitative.Pastel)
-    st.plotly_chart(fig, use_container_width=True)
-
-st.markdown("__________")    
-
-with st.container():
-    st.subheader('Mean price by country')
-    df_aux = df[['restaurant_name', 'country', 'dollar']].groupby('country').mean().reset_index()
-    fig = px.line(df_aux, x='country', y='dollar')
-    st.plotly_chart( fig, use_container_width=True)
-    
-
-    
