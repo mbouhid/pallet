@@ -20,5 +20,5 @@ st.subheader('Página para atualização dos materiais que foram comprados '
 #=======================================================
 
 
-logo = Image.open( './img/pallet.webp')
-st.sidebar.image( logo)
+#logo = Image.open( './img/pallet.webp')
+#st.sidebar.image( logo)

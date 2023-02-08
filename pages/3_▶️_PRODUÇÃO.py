@@ -20,7 +20,7 @@ st.subheader('Página para colocar a quantidade de material '
 #=======================================================
 
 
-logo = Image.open( './img/pallet.webp')
-st.sidebar.image( logo)
+#logo = Image.open( './img/pallet.webp')
+#st.sidebar.image( logo)
 
 
