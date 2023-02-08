@@ -53,9 +53,12 @@ linhas_selecionadas = df['mes_entrega'].isin(mes)
 df = df.loc[linhas_selecionadas, :]
 
 ### FILTRO POR CLIENTE ###
-#clientes = st.sidebar.multiselect("Selecione os clientes:", options=list(df["nome_cliente"].unique()), default=list(df["nome_cliente"].unique()))
-#linhas_selecionadas = df['nome_cliente'].isin(clientes)
-#df = df.loc[linhas_selecionadas, :]
+clientes = st.sidebar.multiselect(
+    "Selecione os clientes:",
+    options=list(df["nome_cliente"].unique()),
+    default=list(df["nome_cliente"].unique()))
+linhas_selecionadas = df['nome_cliente'].isin(clientes)
+df = df.loc[linhas_selecionadas, :]
 
 
 #====================================

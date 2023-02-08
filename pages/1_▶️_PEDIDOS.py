@@ -22,7 +22,7 @@ months = list(calendar.month_name[1:])
 def form():
     st.write('Preencher com as informações para o cálculo')
     with st.form(key='Cálculo de materiais', clear_on_submit=True):
-        name = st.text_input('Nome do Cliente:', 'Cliente1')
+        name = st.text_input('Nome do Cliente:', 'Cliente2')
         qtd = st.sidebar.number_input('Quantidade:', 100, step=100, help="Digitar a qtd de Pallets a serem produzidos")
         month_dlv = st.selectbox('Mês de entrega:', months, help="Mês de entrega dos Pallets ao cliente")
         with st.expander('Pallet120', expanded = True):
