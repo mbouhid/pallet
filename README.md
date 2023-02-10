@@ -1,6 +1,8 @@
-<h1 align="center">Projeto Template</h1>
+<h1 align="center">Sistema Controle de Pallet</h1>
 
-<p align="center">Descrição do projeto</p>
+<p align="center">Sistema web de cálculo de materiais e controle de estoque, que será utilizado na produção de pallets.</p>
+
+
 
 Tabela de conteúdos
 =================
@@ -21,23 +23,25 @@ Tabela de conteúdos
 
 ### Sobre
 
-Texto explicativo do projeto com contexto do negócio, dados sobre o negócio/setor, imagens, origem dos dados, referências, e tudo que for necessário para passar o conhecimento necessário. 
+O sistema de controle de pallets servirá para controlar os pedidos de clientes, calculando a quantidade de material necessária para a produção dos pallets solicitados. O sistema fará, após o login, o controle de pedidos e estoque, cadastro de clientes, fornecedores e produtos, controle e monitoramento da produção e relatórios para ajudar na tomada da decisão. O sistema será escrito em Python + Pandas, guardará em banco de dados sqlite3 e utilizará a cloud do Streamlit para hospedar até que o cliente faça a validação. Após a aprovação, o sistema será migrado para o ambiente web do cliente. 
 
 
 ### Objetivo
-O Objetivo na exploração dos dados é analisar e identificar:
+Seguem algumas funcionalidades a serem criadas:
 
- 1. Imóveis que estejam abaixo da mediana da região de localização
- 2. Imóveis com boas condições e vista para a água
- 3. Identificar a sazonalidade da data da compra (summer or winter)
- 4. Analisar e confirmar as hipóteses:
-    - H1: Imóveis que possuem vista para água, são 30% mais caros, na média.
-    - H2: Imóveis com data de construção menor que 1955, são 50% mais baratos, na média.
-    - H3: Imóveis sem porão possuem área total 50% maiores do que com porão.
-    - H4: O crescimento do preço dos imóveis YoY (Year over Year) é de 10%
-    - H5: Imóveis com 3 banheiros tem um crescimento MoM (Month over Month) de 15%
-
-
+ 1. Tela de login, com múltiplas regras de acordo com a hierarquia da empresa.
+ 2. Tela Pedidos: Cadastro do pedido, referenciando o tipo de pallet cadastrado a determinado cliente e cálculo dos materiais a serem gravados no banco de dados.
+ 3. Tela Produtos: Cadastro dos modelos de pallets e os materiais necessários para a produção.
+ 4. Tela Clientes: Cadastro do cliente ou fornecedor, referenciando o modelo do pallet ao cliente específico.
+ 5. Tela Produção: Dashboard dos produtos que estão sendo produzidos de acordo com a semana em andamento e a data de entrega (sinalização do prazo com verde/amarelo/vermelho)
+ 6. Tela Estoque: Cadastro dos materiais disponíveis para a produção de pallets.
+ 7. Tela Relatório: Lista de relatórios disponíveis:
+     - Estoque: Quantidade de estoque de cada material disponível para a produção. Filtros: Tipo Material, Data de entrada
+     - Pedidos Aprovados: Quantidade de pallets solicitados e aprovados para a produção, mostrando a quantidade de material necessária e se há no estoque ou não.
+     
+ 
+ 
+ 
 ### Premissas
 
 - Na limpeza dos dados:
